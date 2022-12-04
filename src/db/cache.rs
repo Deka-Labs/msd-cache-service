@@ -9,7 +9,7 @@ use mongodb::{
 };
 
 use rocket::{
-    futures::{StreamExt, TryStreamExt},
+    futures::TryStreamExt,
     request::{FromRequest, Outcome},
     Request, State,
 };

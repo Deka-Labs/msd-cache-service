@@ -1,6 +1,5 @@
 #[macro_use]
 extern crate rocket;
-#[macro_use]
 extern crate mongodb;
 
 use rocket::{serde::json::Json, Request};
@@ -16,6 +15,9 @@ use routes::RocketRoutesAdd;
 
 mod status;
 use status::ResponseError;
+
+mod auth;
+mod login_service;
 
 #[catch(404)]
 pub fn not_found_catcher(req: &Request) -> Json<ResponseError> {
