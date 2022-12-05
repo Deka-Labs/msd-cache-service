@@ -85,6 +85,13 @@ impl CacheDatabase {
 
         self.collection.find_one(filter, None).await
     }
+
+    pub async fn delete_cache_by_id(&self, id: ObjectId) -> Result<(), Error> {
+        let filter = doc! {
+            "_id": id,
+        };
+        self.collection.delete_one(filter, None).await.map(|_| ())
+    }
 }
 
 #[async_trait]
