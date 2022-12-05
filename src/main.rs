@@ -18,6 +18,7 @@ use status::ResponseError;
 
 mod auth;
 mod login_service;
+use login_service::RocketAddLoginService;
 
 #[catch(404)]
 pub fn not_found_catcher(req: &Request) -> Json<ResponseError> {
@@ -54,6 +55,7 @@ async fn rocket() -> _ {
         .enable_cors()
         .connect_database()
         .await
+        .add_login_service()
         .register(api_base, catchers![not_found_catcher, unhandled_catcher])
         .routes_add(api_base)
 }
