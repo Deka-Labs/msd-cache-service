@@ -1,6 +1,6 @@
 use crate::{
     auth::AuthInfo,
-    db::{Cache, CacheDatabase, DatabaseErrorResponse},
+    db::{CacheDatabase, DatabaseErrorResponse},
     status::ResponseError,
 };
 use mongodb::bson::oid::ObjectId;

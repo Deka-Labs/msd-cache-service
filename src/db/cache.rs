@@ -86,6 +86,26 @@ impl CacheDatabase {
         self.collection.find_one(filter, None).await
     }
 
+    pub async fn update_cache(&self, cache: Cache) -> Result<(), Error> {
+        let filter = doc! {
+            "_id": cache.id.expect("cannot update cache withou id"),
+        };
+
+        let update = doc! {
+            "$set": {
+                "position.lat": cache.position.lat,
+                "position.lng": cache.position.lng,
+                "description": cache.description,
+                "hint": cache.hint,
+            },
+        };
+
+        self.collection
+            .update_one(filter, update, None)
+            .await
+            .map(|_| ())
+    }
+
     pub async fn delete_cache_by_id(&self, id: ObjectId) -> Result<(), Error> {
         let filter = doc! {
             "_id": id,

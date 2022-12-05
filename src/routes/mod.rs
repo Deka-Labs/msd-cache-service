@@ -9,6 +9,9 @@ use view::view_caches;
 
 mod delete;
 use delete::delete_cache;
+
+mod edit;
+use edit::edit_cache;
 pub trait RocketRoutesAdd {
     fn routes_add(self, api_base: &str) -> Self;
 }
@@ -18,7 +21,13 @@ impl RocketRoutesAdd for Rocket<Build> {
         let path = format!("{}/cache", api_base);
         self.mount(
             path,
-            routes![create_cache, view_caches, view_cache, delete_cache],
+            routes![
+                create_cache,
+                view_caches,
+                view_cache,
+                delete_cache,
+                edit_cache
+            ],
         )
     }
 }
