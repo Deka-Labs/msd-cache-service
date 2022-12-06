@@ -1,0 +1,13 @@
+#container intended to use with volume binded to src and 
+
+FROM rust:1
+
+WORKDIR /app/src
+
+RUN cargo install cargo-watch
+
+ENV ROCKET_ADDRESS=0.0.0.0
+ENV ROCKET_PORT=8000
+ENV DEV_SERVER=1
+
+CMD ["/app/src/start_server.sh"]
